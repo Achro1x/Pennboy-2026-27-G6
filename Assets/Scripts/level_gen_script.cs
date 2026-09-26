@@ -20,6 +20,7 @@ public class level_gen_script : MonoBehaviour
     private RenderParams uninfected_render_params;
 
     [SerializeField] private Mesh quad_mesh;
+    //[SerializeField] private Texture2D[] uninfected_texture;
 
     //a list that stores squares of each level --> index 0 would be level 0, index 1 is level 1, etc. 
     public List<List<square>> list_of_square_in_level_index = new List<List<square>>();
