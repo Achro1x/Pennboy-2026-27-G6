@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using System.Numerics;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
@@ -20,32 +21,26 @@ public class level_gen_script : MonoBehaviour
 
     [SerializeField] private Mesh quad_mesh;
 
-
-    public struct square
-    {
-        public int id;
-        public Vector3 location;
-        public bool is_infected;
-        //public int belong_to_level;
-
-        // Constructor to easily create them in bulk
-        public square (int id, Vector3 location, bool is_infected)
-        {
-            this.id = id;
-            this.location = location;
-            this.is_infected = is_infected;
-            //this.belong_to_level = (int)Mathf.Max(Mathf.Abs(location.x), Mathf.Abs(location.y));
-        }
-    }
+    //a list that stores squares of each level --> index 0 would be level 0, index 1 is level 1, etc. 
+    public List<List<square>> list_of_square_in_level_index = new List<List<square>>();
 
     void Start()
     {
-        
         game_variable_script = GetComponent<all_game_variables>();
-        
-        
+
+
+
+
         //layout the map
         int size = game_variable_script.map_size;
+
+        //initialize elements in list_of_square_in_level_index
+        for (int i =0; i < (int)Mathf.Pow(2 * size, 2); i++)
+        {
+            list_of_square_in_level_index.Add(new List<square>());
+        }
+
+        //add square into all_square_list and list_of_square_in_level_index
         int index = 0;
         for (int i = -size; i < size; i++)
         {
@@ -54,7 +49,11 @@ public class level_gen_script : MonoBehaviour
                 
                 square new_square = new square(index, new Vector3(i, j, 0), false);
                 all_squares_list.Add(new_square);
-                index++; 
+                index++;
+                int square_belong_to_level = (int)Mathf.Max(Mathf.Abs(i), Mathf.Abs(j));
+                list_of_square_in_level_index[square_belong_to_level].Add(new_square);
+                
+
 
             }
         }
@@ -75,7 +74,23 @@ public class level_gen_script : MonoBehaviour
             matProps = uninfected_property_block,
             //worldBounds = new Bounds(Vector3.zero, Vector3.one * 10000f)
         };
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //location & quaternion data used in entity (square) culling
     private List<Matrix4x4> visible_matrices_infected = new List<Matrix4x4>();
@@ -125,7 +140,8 @@ public class level_gen_script : MonoBehaviour
 
         draw_square(visible_matrices_uninfected, uninfected_render_params);
         draw_square(visible_matrices_infected, infected_render_params);
- 
-        
+        print(visible_matrices_uninfected.Count);
+        print(visible_matrices_infected.Count);
+
     }
 }
