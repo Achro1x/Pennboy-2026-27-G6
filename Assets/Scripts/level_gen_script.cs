@@ -12,7 +12,7 @@ public class level_gen_script : MonoBehaviour
     // Start is called before the first frame update
     private all_game_variables game_variable_script;
     [SerializeField] GameObject square_uninfected;
-    public List<square> all_squares_list = new List<square>();
+    [System.NonSerialized] public List<square> all_squares_list = new List<square>();
     [SerializeField] Camera main_camera;
     [SerializeField] private Material unlit_material;
 
