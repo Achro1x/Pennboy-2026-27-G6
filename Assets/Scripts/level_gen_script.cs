@@ -25,7 +25,8 @@ public class level_gen_script : MonoBehaviour
     {
         public int id;
         public Vector3 location;
-        public bool is_infected; 
+        public bool is_infected;
+        //public int belong_to_level;
 
         // Constructor to easily create them in bulk
         public square (int id, Vector3 location, bool is_infected)
@@ -33,6 +34,7 @@ public class level_gen_script : MonoBehaviour
             this.id = id;
             this.location = location;
             this.is_infected = is_infected;
+            //this.belong_to_level = (int)Mathf.Max(Mathf.Abs(location.x), Mathf.Abs(location.y));
         }
     }
 
@@ -45,9 +47,9 @@ public class level_gen_script : MonoBehaviour
         //layout the map
         int size = game_variable_script.map_size;
         int index = 0;
-        for (int i = 0; i < size; i++)
+        for (int i = -size; i < size; i++)
         {
-            for (int j = 0; j < size; j++)
+            for (int j = -size; j < size; j++)
             {
                 
                 square new_square = new square(index, new Vector3(i, j, 0), false);
@@ -103,7 +105,7 @@ public class level_gen_script : MonoBehaviour
         Plane[] camera_planes = GeometryUtility.CalculateFrustumPlanes(main_camera);
         Vector3 square_size = new Vector3(1f, 1f, 0.1f);
 
-        for(int i = 0; i < Mathf.Pow(game_variable_script.map_size, 2); i++)
+        for(int i = 0; i < all_squares_list.Count; i++)
         {
             Vector3 sprite_location = all_squares_list[i].location;
             Bounds sprite_bounds = new Bounds(sprite_location, square_size);
