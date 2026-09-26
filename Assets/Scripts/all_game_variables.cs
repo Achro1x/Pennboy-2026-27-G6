@@ -13,6 +13,7 @@ public class all_game_variables: MonoBehaviour
     //rates
     public int spore_per_sec;
     public int infected_block_per_sec;
+    public int infected_block_per_click;
     public int mob_spawn_rate;
 
     //player inventory
@@ -24,6 +25,7 @@ public class all_game_variables: MonoBehaviour
         number_of_infected_blocks = 0;
         spore_per_sec = 0;
         infected_block_per_sec = 0;
+        infected_block_per_click = 1;
         mob_spawn_rate = 0;
         spore_owned = 0;
     }
