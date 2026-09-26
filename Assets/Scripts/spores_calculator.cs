@@ -17,7 +17,7 @@ public class spores_calculator : MonoBehaviour
         //total spore is the is spore_per_sec * numebr of infected blocks
         print(all_game_var_script.number_of_infected_blocks);
          
-        float delta_spore = all_game_var_script.spore_per_sec * all_game_var_script.number_of_infected_blocks * Time.deltaTime;
+        float delta_spore = all_game_var_script.spore_per_sec * all_game_var_script.number_of_infected_blocks * Time.deltaTime / 5;
         float new_total_spore_float = all_game_var_script.spore_owned + delta_spore;
         all_game_var_script.spore_owned =  new_total_spore_float;
         spore_text.text = "Current Spores: " + Mathf.Floor(all_game_var_script.spore_owned);
