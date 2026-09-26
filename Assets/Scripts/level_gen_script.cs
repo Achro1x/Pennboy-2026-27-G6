@@ -6,7 +6,7 @@ public class level_gen_script : MonoBehaviour
 {
     // Start is called before the first frame update
     private all_game_variables game_variable_script;
-    private GameObject square_uninfected;
+    public GameObject square_uninfected;
     void Start()
     {
         game_variable_script = GetComponent<all_game_variables>();
@@ -18,8 +18,7 @@ public class level_gen_script : MonoBehaviour
         {
             for (int j = 0; j < size; j++)
             {
-                GameObject new_square = Instantiate(square_uninfected, new Vector3(i, 0, j), Quaternion.identity);
-
+                GameObject new_square = Instantiate(square_uninfected, new Vector3(i, j, 0), Quaternion.identity);
             }
         }
 
