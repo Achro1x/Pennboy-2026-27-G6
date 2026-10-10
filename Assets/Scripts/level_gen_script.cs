@@ -49,6 +49,7 @@ public class level_gen_script : MonoBehaviour
             {
                 
                 square new_square = new square(index, new Vector3(i, j, 0), false);
+
                 all_squares_list.Add(new_square);
                 index++;
                 int square_belong_to_level = (int)Mathf.Max(Mathf.Abs(i), Mathf.Abs(j));
@@ -94,7 +95,7 @@ public class level_gen_script : MonoBehaviour
 
 
     //location & quaternion data used in entity (square) culling
-    private List<Matrix4x4> visible_matrices_infected = new List<Matrix4x4>();
+    [SerializeField] private List<Matrix4x4> visible_matrices_infected = new List<Matrix4x4>();
     private List<Matrix4x4> visible_matrices_uninfected = new List<Matrix4x4>();
 
 
