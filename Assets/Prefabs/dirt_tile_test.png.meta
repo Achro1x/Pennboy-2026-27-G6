@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dfe2d6aa95e1577419a0e56fe927fdc2
+guid: cc04b0f0c4f81f24980272a7490ba4d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 357749872346554099
-    second: mushroom_0
+      213: -4863171074003845553
+    second: dirt_tile_test_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mushroom_0
+      name: dirt_tile_test_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 590
-        height: 522
+        width: 500
+        height: 500
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3fe58ab0d9bf6f400800000000000000
-      internalID: 357749872346554099
+      spriteID: f4ebb04acab828cb0800000000000000
+      internalID: -4863171074003845553
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mushroom_0: 357749872346554099
+      dirt_tile_test_0: -4863171074003845553
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

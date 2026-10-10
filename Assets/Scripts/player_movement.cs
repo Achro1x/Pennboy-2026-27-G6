@@ -8,7 +8,7 @@ public class player_movement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        cam.orthographicSize = 3;
     }
 
     // Update is called once per frame
@@ -24,6 +24,12 @@ public class player_movement : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         cam.orthographicSize += scroll * scroll_speed * Time.deltaTime;
+        
+        //cam size lock
+        if(cam.orthographicSize <= 3){
+            cam.orthographicSize = 3;
+        }
 
     }
+
 }
