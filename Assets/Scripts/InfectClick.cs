@@ -49,15 +49,8 @@ public class InfectClick : MonoBehaviour
             if (!(list_of_square_at_current_level[i].is_infected))
             {
                 //infect the next block
-                square copy = list_of_square_at_current_level[i];
-                copy.is_infected = true;
-                list_of_square_at_current_level[i] = copy;
-
-                //also update this change to all_square_list
-                int index = copy.id;
-                level_gen_script_reference.all_squares_list[index] = copy;
-
-                IBCount += IBPClick;
+                list_of_square_at_current_level[i].is_infected = true;
+ 
                 break;
             }
         }
@@ -77,7 +70,7 @@ public class InfectClick : MonoBehaviour
         /*if (level_filled)
         {
             IBCount += 0;
-            print("true");
+            //print("true");
         }
         else
         {

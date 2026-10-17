@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8980393, g: 0.87843144, b: 0.8431373, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9725491, g: 0.9490197, b: 0.91372555, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2006,7 +2006,7 @@ MonoBehaviour:
   map_size: 5
   number_of_infected_blocks: 0
   number_of_uninfected_blocks: 0
-  spore_per_sec: 0
+  spore_per_sec: 5
   infected_block_per_sec: 0
   infected_block_per_click: 1
   mob_spawn_rate: 0
@@ -2559,7 +2559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9333334, g: 0.91372555, b: 0.87843144, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2594,7 +2594,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1472735965}
   - component: {fileID: 1472735964}
-  - component: {fileID: 1472735963}
   m_Layer: 0
   m_Name: level_generator
   m_TagString: Untagged
@@ -2602,26 +2601,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1472735963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1472735962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ac08c5c3b30e18419ed4fe5f7c55e4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  map_size: 0
-  number_of_infected_blocks: 0
-  number_of_uninfected_blocks: 0
-  spore_per_sec: 0
-  infected_block_per_sec: 0
-  infected_block_per_click: 0
-  mob_spawn_rate: 0
-  spore_owned: 0
 --- !u!114 &1472735964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2634,6 +2613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd184c40cab564469d56fd19dfaa029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game_variable_script: {fileID: 1108149585}
   square_uninfected: {fileID: 8117126275988496319, guid: d061e6428f6951d42ad24c99b9ae22b5, type: 3}
   main_camera: {fileID: 519420031}
   unlit_material: {fileID: 2100000, guid: c942f83e10efda54d9bfd6c6be77086c, type: 2}
@@ -2667,6 +2647,11 @@ GameObject:
   - component: {fileID: 1480387005}
   m_Layer: 5
   m_Name: spore_price
+  - component: {fileID: 1739758137}
+  - component: {fileID: 1739758136}
+  - component: {fileID: 1739758138}
+  m_Layer: 0
+  m_Name: enemy_spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2766,6 +2751,20 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1480387006
 CanvasRenderer:
+  m_GameObject: {fileID: 1739758135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bda0b6fea71a0b4e864634aa792c98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemy_spawner
+  data_storage: {fileID: 1108149585}
+  infect_click_script: {fileID: 835326993}
+  targetchooser_script: {fileID: 1739758138}
+  beetle_mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  beetle_material: {fileID: 2100000, guid: 74f88e9e4d48d774a9151f5b91c490e9, type: 2}
+  main_camera: {fileID: 519420031}
+--- !u!4 &1739758137
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3179,4 +3178,4 @@ SceneRoots:
   - {fileID: 938568450}
   - {fileID: 835326995}
   - {fileID: 1108149586}
-  - {fileID: 1004499106}
+  - {fileID: 1739758137}
