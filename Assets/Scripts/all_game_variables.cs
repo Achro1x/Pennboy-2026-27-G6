@@ -12,10 +12,10 @@ public class all_game_variables: MonoBehaviour
     public int number_of_uninfected_blocks;
 
     //rates
-    public int spore_per_sec = 5;
-    public int infected_block_per_sec = 0;
-    public int infected_block_per_click = 1;
-    public int mob_spawn_rate = 0;
+    public int spore_per_sec;
+    public int infected_block_per_sec;
+    public int infected_block_per_click;
+    public int mob_spawn_rate;
 
 
     //player inventory
@@ -26,7 +26,14 @@ public class all_game_variables: MonoBehaviour
 
     void Start()
     {
-        number_of_uninfected_blocks = map_size * map_size * 4;
+        map_size = 5;
+        number_of_infected_blocks = 0;
+        number_of_uninfected_blocks = map_size*map_size*4;
+        spore_per_sec = 5;
+        infected_block_per_sec = 0;
+        infected_block_per_click = 1;
+        mob_spawn_rate = 0;
+        spore_owned = 0;
     }
 
     // Update is called once per frame

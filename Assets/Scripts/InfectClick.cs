@@ -13,6 +13,8 @@ public class InfectClick : MonoBehaviour
     private int IBPClick;
     public bool level_upgrade_unlocked = true;
 
+    public bool level_filled = false;
+
 
     [SerializeField] level_gen_script level_gen_script_reference;
     public int current_level;
@@ -27,16 +29,19 @@ public class InfectClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        IBtext.text = "Current Infected Blocks: " + IBCount + " MWAHAHAHAH";
         
     }
 
-    private bool level_filled = false;
+
+
     public void Infect_Increase(){
 
         
         List<square> list_of_square_at_current_level = level_gen_script_reference.list_of_square_in_level_index[current_level];
         int num_of_square_at_current_level = list_of_square_at_current_level.Count;
 
+    
 
         //infect block at current level
         for (int i = 0; i < num_of_square_at_current_level; i++)
@@ -50,6 +55,7 @@ public class InfectClick : MonoBehaviour
             }
         }
 
+                
         level_filled = true;
         //check level filled
         for (int i = 0; i < num_of_square_at_current_level; i++)
@@ -61,7 +67,7 @@ public class InfectClick : MonoBehaviour
         }
 
         //check if level is filled
-        if (level_filled && !level_upgrade_unlocked)
+        /*if (level_filled)
         {
             IBCount += 0;
             //print("true");
@@ -69,12 +75,12 @@ public class InfectClick : MonoBehaviour
         else
         {
             IBCount += IBPClick;
-        }
+        }*/
 
 
             //check current level
 
-        bool should_inc_level = true;
+        /*bool should_inc_level = true;
         foreach (square sq in list_of_square_at_current_level)
         {
             if (!(sq.is_infected))
@@ -82,17 +88,17 @@ public class InfectClick : MonoBehaviour
                 should_inc_level = false;
                 break;
             }
-        }
-        if (should_inc_level && level_upgrade_unlocked)
+        }*/
+        /*if (should_inc_level && level_upgrade_unlocked)
         {
             current_level++;
             level_filled = false;
             level_upgrade_unlocked = false;
-        }
+        }*/
         //print(current_level);
 
 
-        IBtext.text = "Current Infected Blocks: " + IBCount + " MWAHAHAHAH";
+
         data.number_of_infected_blocks = IBCount;
     }
 }
