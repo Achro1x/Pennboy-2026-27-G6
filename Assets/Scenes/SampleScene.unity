@@ -1654,8 +1654,8 @@ Transform:
   m_GameObject: {fileID: 1004499104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 202.42043, y: 152.59523, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 27, y: 433, z: 0}
+  m_LocalScale: {x: 3.2982, y: 3.2982, z: 3.2982}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2647,11 +2647,6 @@ GameObject:
   - component: {fileID: 1480387005}
   m_Layer: 5
   m_Name: spore_price
-  - component: {fileID: 1739758137}
-  - component: {fileID: 1739758136}
-  - component: {fileID: 1739758138}
-  m_Layer: 0
-  m_Name: enemy_spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2751,20 +2746,6 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1480387006
 CanvasRenderer:
-  m_GameObject: {fileID: 1739758135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bda0b6fea71a0b4e864634aa792c98d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::enemy_spawner
-  data_storage: {fileID: 1108149585}
-  infect_click_script: {fileID: 835326993}
-  targetchooser_script: {fileID: 1739758138}
-  beetle_mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-  beetle_material: {fileID: 2100000, guid: 74f88e9e4d48d774a9151f5b91c490e9, type: 2}
-  main_camera: {fileID: 519420031}
---- !u!4 &1739758137
-Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2778,16 +2759,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480387004}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0799999, y: 0.58000076, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 696724400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -6.8}
+  m_AnchoredPosition: {x: -1.3, y: -7.5}
   m_SizeDelta: {x: 140.2896, y: 16.3327}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1571540317
@@ -3178,4 +3159,4 @@ SceneRoots:
   - {fileID: 938568450}
   - {fileID: 835326995}
   - {fileID: 1108149586}
-  - {fileID: 1739758137}
+  - {fileID: 1004499106}

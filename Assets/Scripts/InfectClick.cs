@@ -50,6 +50,7 @@ public class InfectClick : MonoBehaviour
             {
                 //infect the next block
                 list_of_square_at_current_level[i].is_infected = true;
+                IBCount += 1;
  
                 break;
             }
