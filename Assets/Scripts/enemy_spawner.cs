@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.Hierarchy;
 using UnityEngine;
 using UnityEngine.Rendering;
 using static UnityEngine.GraphicsBuffer;
@@ -8,7 +9,7 @@ using static UnityEngine.GraphicsBuffer;
 public class enemy_spawner : MonoBehaviour
 {
 
-    [SerializeField] all_game_variables data_storage; 
+    [SerializeField] all_game_variables data_storage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //enemies are stored in a list 
     List<enemy> all_enemy_list;
@@ -45,7 +46,7 @@ public class enemy_spawner : MonoBehaviour
             0);
 
         //enemy move, eat and health is porportional to current level 
-        enemy_move_speed = current_level_ref / 5;
+        enemy_move_speed = current_level_ref / 2;
         enemy_eat_speed = current_level_ref / 3;
         enemy_health = current_level_ref / 2;
 
@@ -55,9 +56,10 @@ public class enemy_spawner : MonoBehaviour
 
         //spawn rate scales acoording to level -> 
         data_storage.mob_spawn_rate = current_level_ref * 2;
+        print("mob sr" + data_storage.mob_spawn_rate + current_level_ref);
 
         //spawn enemy numbers depending on current level^2
-        
+
         for (int i = 0; i < data_storage.mob_spawn_rate; i++)
         {
             enemy new_enemy = new enemy(0, enemy_spawn_location, enemy_move_speed, enemy_eat_speed, enemy_health, target_block, 0f);
@@ -74,6 +76,7 @@ public class enemy_spawner : MonoBehaviour
     [SerializeField] private Mesh beetle_mesh;
     [SerializeField] private Material beetle_material;
     private RenderParams beetle_render_params;
+    [SerializeField] Camera main_camera;
     void draw_enemy(List<Matrix4x4> visible_matrix_list, RenderParams render_params)
     {
         //sliced into 1023 element groups bc its the max unity can render at a time
@@ -86,9 +89,19 @@ public class enemy_spawner : MonoBehaviour
         }
     }
 
-
+    float enemy_counter = 0; 
     void Update()
     {
+
+        if (enemy_counter < 3)
+        {
+            enemy_counter += Time.deltaTime; 
+        }
+        else
+        {
+            spawn_enemy();
+            enemy_counter = 0;
+        }
         if (all_enemy_list != null)
         {
             //for every enemy in enemy list:
@@ -138,15 +151,35 @@ public class enemy_spawner : MonoBehaviour
         beetle_render_params = new RenderParams(beetle_material)
         {
             matProps = beetle_property_block,
-           
+
         };
 
-        //draw_enemy(visible_matrices_enemies, beetle_render_params);
+        visible_matrices_enemies.Clear();
 
+        Plane[] camera_planes = GeometryUtility.CalculateFrustumPlanes(main_camera);
+        Vector3 square_size = new Vector3(1f, 1f, 0.1f);
 
-
-
-
-
+        for (int i = 0; i < all_enemy_list.Count; i++)
+        {
+            Vector3 sprite_location = all_enemy_list[i].location;
+            Bounds sprite_bounds = new Bounds(sprite_location, square_size);
+            if (GeometryUtility.TestPlanesAABB(camera_planes, sprite_bounds))
+            {
+                Matrix4x4 matrix_of_sprite_in_view = Matrix4x4.TRS(sprite_location, Quaternion.identity, Vector3.one);
+                visible_matrices_enemies.Add(matrix_of_sprite_in_view);
+            }
+        }    
+        
+        draw_enemy(visible_matrices_enemies, beetle_render_params);
+         
     }
+
+
+
+
+
+
+    
+
+    
 }

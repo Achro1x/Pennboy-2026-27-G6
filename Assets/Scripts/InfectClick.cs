@@ -64,7 +64,7 @@ public class InfectClick : MonoBehaviour
         if (level_filled && !level_upgrade_unlocked)
         {
             IBCount += 0;
-            print("true");
+            //print("true");
         }
         else
         {
