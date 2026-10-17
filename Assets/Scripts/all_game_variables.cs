@@ -5,37 +5,28 @@ using UnityEngine;
 public class all_game_variables: MonoBehaviour
 {
     //level settings
-    public int map_size;
+    public int map_size = 5;
 
     //number of generators
-    public int number_of_infected_blocks;
+    public int number_of_infected_blocks = 1;
     public int number_of_uninfected_blocks;
 
     //rates
-    public float spore_per_sec;
-    public int infected_block_per_sec;
-    public int infected_block_per_click;
-    public int mob_spawn_rate;
+    public float spore_per_sec = 5;
+    public int infected_block_per_sec = 0;
+    public int infected_block_per_click = 1;
+    public int mob_spawn_rate = 0;
 
 
     //player inventory
-    public float spore_owned;
- 
+    public float spore_owned = 0;
 
 
-    
+
+
     void Start()
     {
-
-        map_size = 500;
-        number_of_infected_blocks = 0;
-        number_of_uninfected_blocks = map_size*map_size;
-        spore_per_sec = 5;
-        infected_block_per_sec = 0;
-        infected_block_per_click = 1;
-        mob_spawn_rate = 0;
-        spore_owned = 0;
- 
+        number_of_uninfected_blocks = map_size * map_size * 4;
     }
 
     // Update is called once per frame
