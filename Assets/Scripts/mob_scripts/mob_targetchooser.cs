@@ -4,23 +4,25 @@ using UnityEngine;
 public class mob_targetchooser : MonoBehaviour
 {
     private level_gen_script level_generator;
+    private InfectClick clicker;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         level_generator = FindFirstObjectByType<level_gen_script>();
+        clicker = FindFirstObjectByType<InfectClick>();
     }
 
     public Vector3? FindNearestRedSquare()
     {
         if (level_generator == null)
             return null;
-        
+
         Vector3 mob_position = transform.position;
 
         float closest_distance = float.MaxValue;
         Vector3? closest_location = null;
         foreach (square square
-            in level_generator.all_squares_list)
+            in level_generator.list_of_square_in_level_index[clicker.current_level])
     {
         // find red squares
         if (!square.is_infected)
