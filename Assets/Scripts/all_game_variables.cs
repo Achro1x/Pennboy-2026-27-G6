@@ -26,7 +26,7 @@ public class all_game_variables: MonoBehaviour
         map_size = 500;
         number_of_infected_blocks = 0;
         number_of_uninfected_blocks = map_size*map_size;
-        spore_per_sec = 1;
+        spore_per_sec = 5;
         infected_block_per_sec = 0;
         infected_block_per_click = 1;
         mob_spawn_rate = 0;

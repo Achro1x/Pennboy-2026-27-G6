@@ -514,8 +514,10 @@ GameObject:
   m_Component:
   - component: {fileID: 461485356}
   - component: {fileID: 461485359}
+  - component: {fileID: 461485360}
   - component: {fileID: 461485358}
   - component: {fileID: 461485357}
+  - component: {fileID: 461485361}
   m_Layer: 5
   m_Name: Button_LevelUp
   m_TagString: Untagged
@@ -585,7 +587,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 461485358}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 835326998}
+        m_TargetAssemblyTypeName: upgrades, Assembly-CSharp
+        m_MethodName: Upgrade_level_up
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &461485358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +638,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461485355}
   m_CullTransparentMesh: 1
+--- !u!102 &461485360
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461485355}
+  m_Text: 'level up
+
+'
+  m_OffsetZ: 0
+  m_CharacterSize: 7
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4.13
+  m_FontSize: 24
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+--- !u!23 &461485361
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461485355}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1140,7 @@ GameObject:
   - component: {fileID: 835326991}
   - component: {fileID: 835326996}
   - component: {fileID: 835326997}
+  - component: {fileID: 835326998}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1114,6 +1202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::mushroom_infect
   IBtext: {fileID: 157205687}
   data: {fileID: 1108149585}
+  level_upgrade_unlocked: 0
   level_gen_script_reference: {fileID: 1472735964}
   current_level: 0
 --- !u!223 &835326994
@@ -1188,6 +1277,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::uninfect_block_count
   uninfectText: {fileID: 410547228}
   data: {fileID: 1108149585}
+--- !u!114 &835326998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835326990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492600cbddd336048820e7cdf7cdd63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::upgrades
+  infect_script: {fileID: 835326993}
+  all_game_var_script: {fileID: 1108149585}
 --- !u!1 &873107694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,7 +1609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac08c5c3b30e18419ed4fe5f7c55e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::all_game_variables
-  map_size: 500
+  map_size: 100
   number_of_infected_blocks: 0
   number_of_uninfected_blocks: 0
   spore_per_sec: 0
@@ -1853,6 +1956,7 @@ MonoBehaviour:
   main_camera: {fileID: 519420031}
   unlit_material: {fileID: 2100000, guid: c942f83e10efda54d9bfd6c6be77086c, type: 2}
   quad_mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  visible_matrices_infected: []
 --- !u!4 &1472735965
 Transform:
   m_ObjectHideFlags: 0
