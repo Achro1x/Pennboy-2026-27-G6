@@ -1612,7 +1612,7 @@ MonoBehaviour:
   map_size: 100
   number_of_infected_blocks: 1
   number_of_uninfected_blocks: 0
-  spore_per_sec: 1
+  spore_per_sec: 5
   infected_block_per_sec: 0
   infected_block_per_click: 1
   mob_spawn_rate: 0
@@ -1987,6 +1987,7 @@ MonoBehaviour:
   targetchooser_script: {fileID: 1739758138}
   beetle_mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   beetle_material: {fileID: 2100000, guid: 74f88e9e4d48d774a9151f5b91c490e9, type: 2}
+  main_camera: {fileID: 519420031}
 --- !u!4 &1739758137
 Transform:
   m_ObjectHideFlags: 0

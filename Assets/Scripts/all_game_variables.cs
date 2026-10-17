@@ -12,7 +12,7 @@ public class all_game_variables: MonoBehaviour
     public int number_of_uninfected_blocks;
 
     //rates
-    public float spore_per_sec = 5;
+    public int spore_per_sec = 5;
     public int infected_block_per_sec = 0;
     public int infected_block_per_click = 1;
     public int mob_spawn_rate = 0;

@@ -47,7 +47,7 @@ public class enemy_spawner : MonoBehaviour
 
         //enemy move, eat and health is porportional to current level 
         enemy_move_speed = current_level_ref / 2;
-        enemy_eat_speed = current_level_ref / 3;
+        enemy_eat_speed = 1;
         enemy_health = current_level_ref / 2;
 
 
@@ -122,6 +122,7 @@ public class enemy_spawner : MonoBehaviour
                     {
                         //block is no longer infected:
                         spooky_hungry_enemy.target_block.is_infected = false;
+                        print("not infected!!");
                     }
 
                 }
