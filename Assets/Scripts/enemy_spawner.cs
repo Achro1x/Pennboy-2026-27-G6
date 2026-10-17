@@ -51,20 +51,40 @@ public class enemy_spawner : MonoBehaviour
 
 
         //find target block based on the spawn location. This should be updated after every block consumed. 
-        ///////////////////////square target_block = targetchooser_script.FindNearestRedSquare();
+        square target_block = targetchooser_script.FindNearestRedSquare();
 
         //spawn rate scales acoording to level -> 
         data_storage.mob_spawn_rate = current_level_ref * 2;
 
         //spawn enemy numbers depending on current level^2
-        //////////////////////////////////////
-        /*for (int i = 0; i < data_storage.mob_spawn_rate; i++)
+        
+        for (int i = 0; i < data_storage.mob_spawn_rate; i++)
         {
-            enemy new_enemy = new enemy(0, enemy_spawn_location, enemy_move_speed, enemy_eat_speed, enemy_health, target_block);
+            enemy new_enemy = new enemy(0, enemy_spawn_location, enemy_move_speed, enemy_eat_speed, enemy_health, target_block, 0f);
             all_enemy_list.Add(new_enemy);
-        }*/
+        }
     }
 
+
+
+    //This is identical to the mecahnics used to geenrate squares. location & quaternion data used in entity (enemy) culling
+    private List<Matrix4x4> visible_matrices_enemies = new List<Matrix4x4>();
+
+
+    [SerializeField] private Mesh beetle_mesh;
+    [SerializeField] private Material beetle_material;
+    private RenderParams beetle_render_params;
+    void draw_enemy(List<Matrix4x4> visible_matrix_list, RenderParams render_params)
+    {
+        //sliced into 1023 element groups bc its the max unity can render at a time
+
+        for (int i = 0; i < visible_matrix_list.Count; i += 1023)
+        {
+            int number_of_sprites_to_be_rendered = Mathf.Min(1023, visible_matrix_list.Count - i);
+            List<Matrix4x4> matrix_list_to_be_rendered = visible_matrix_list.GetRange(i, number_of_sprites_to_be_rendered);
+            Graphics.RenderMeshInstanced(render_params, beetle_mesh, 0, matrix_list_to_be_rendered);
+        }
+    }
 
 
     void Update()
@@ -107,6 +127,17 @@ public class enemy_spawner : MonoBehaviour
 
          
         }
+
+        /// BELOW IS RENDERING CODDE FOR ENEMIES
+        MaterialPropertyBlock beetle_property_block = new MaterialPropertyBlock();
+        beetle_property_block.SetColor(Shader.PropertyToID("_BaseColor"), Color.red);
+        beetle_render_params = new RenderParams(beetle_material)
+        {
+            matProps = beetle_property_block,
+           
+        };
+
+        draw_enemy(visible_matrices_enemies, beetle_render_params);
 
 
 

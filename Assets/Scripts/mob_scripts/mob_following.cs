@@ -17,7 +17,7 @@ public class mob_following : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target_chooser == null)
+/*        if (target_chooser == null)
         return;
 
         Vector3? target =
@@ -32,6 +32,6 @@ public class mob_following : MonoBehaviour
             transform.position,
             target_position,
             speed * Time.deltaTime
-        );
+        );*/
     }
 }
