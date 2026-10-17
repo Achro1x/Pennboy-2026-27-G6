@@ -89,44 +89,48 @@ public class enemy_spawner : MonoBehaviour
 
     void Update()
     {
-        //for every enemy in enemy list:
-        foreach (enemy spooky_hungry_enemy in all_enemy_list)
+        if (all_enemy_list != null)
         {
-
-            // are we on the target block yet?? 
-            bool are_we_at_target_blcok = false; 
-
-            if (are_we_at_target_blcok)
+            //for every enemy in enemy list:
+            foreach (enemy spooky_hungry_enemy in all_enemy_list)
             {
-                //hell yea. E A T 
-                //eating_progress is the current percentage progress.
-                float blocks_eaten_per_sec = 1 / spooky_hungry_enemy.eat_speeed;
-                spooky_hungry_enemy.eating_progress += blocks_eaten_per_sec * Time.deltaTime;
 
-                if (spooky_hungry_enemy.eating_progress >= 1)
+                // are we on the target block yet?? 
+                bool are_we_at_target_blcok = false;
+
+                if (are_we_at_target_blcok)
                 {
-                    //block is no longer infected:
-                    spooky_hungry_enemy.target_block.is_infected = false; 
+                    //hell yea. E A T 
+                    //eating_progress is the current percentage progress.
+                    float blocks_eaten_per_sec = 1 / spooky_hungry_enemy.eat_speeed;
+                    spooky_hungry_enemy.eating_progress += blocks_eaten_per_sec * Time.deltaTime;
+
+                    if (spooky_hungry_enemy.eating_progress >= 1)
+                    {
+                        //block is no longer infected:
+                        spooky_hungry_enemy.target_block.is_infected = false;
+                    }
+
+                }
+                else
+                {
+                    //nay :(
+                    //follow the target_block
+                    Vector3 target_position = spooky_hungry_enemy.target_block.location;
+
+                    spooky_hungry_enemy.location = Vector3.MoveTowards(
+                        spooky_hungry_enemy.location,
+                        target_position,
+                        spooky_hungry_enemy.move_speed * Time.deltaTime);
+                    //end of following function
+
                 }
 
+
+
             }
-            else
-            {
-                //nay :(
-                //follow the target_block
-                Vector3 target_position = spooky_hungry_enemy.target_block.location;
-
-                spooky_hungry_enemy.location = Vector3.MoveTowards(
-                    spooky_hungry_enemy.location,
-                    target_position,
-                    spooky_hungry_enemy.move_speed * Time.deltaTime);
-                //end of following function
- 
-            }
-
-
-         
         }
+
 
         /// BELOW IS RENDERING CODDE FOR ENEMIES
         MaterialPropertyBlock beetle_property_block = new MaterialPropertyBlock();
@@ -137,7 +141,7 @@ public class enemy_spawner : MonoBehaviour
            
         };
 
-        draw_enemy(visible_matrices_enemies, beetle_render_params);
+        //draw_enemy(visible_matrices_enemies, beetle_render_params);
 
 
 
