@@ -18,7 +18,7 @@ public struct square
     }
 }
 
-public struct enemy
+public class enemy
 {
     public int id;
     public Vector3 location;

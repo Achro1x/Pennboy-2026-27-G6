@@ -142,8 +142,8 @@ public class level_gen_script : MonoBehaviour
 
         draw_square(visible_matrices_uninfected, uninfected_render_params);
         draw_square(visible_matrices_infected, infected_render_params);
-        print(visible_matrices_uninfected.Count);
-        print(visible_matrices_infected.Count);
+        //print(visible_matrices_uninfected.Count);
+        //print(visible_matrices_infected.Count);
 
     }
 }

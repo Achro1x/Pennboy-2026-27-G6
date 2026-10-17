@@ -11,6 +11,7 @@ public class InfectClick : MonoBehaviour
 
     private int IBCount;
     private int IBPClick;
+    public bool level_upgrade_unlocked = true;
 
 
     [SerializeField] level_gen_script level_gen_script_reference;
@@ -29,20 +30,26 @@ public class InfectClick : MonoBehaviour
         
     }
 
-
+    private bool level_filled = false;
     public void Infect_Increase(){
-        IBCount += IBPClick;
+
         IBtext.text = "Current Infected Blocks: " + IBCount + " MWAHAHAHAH";
         data.number_of_infected_blocks = IBCount;
         
         List<square> list_of_square_at_current_level = level_gen_script_reference.list_of_square_in_level_index[current_level];
         int num_of_square_at_current_level = list_of_square_at_current_level.Count;
 
+
+
+         
+         
         //infect block at current level
         for (int i = 0; i < num_of_square_at_current_level; i++)
         {
             if (!(list_of_square_at_current_level[i].is_infected))
             {
+                 
+
                 //infect the next block
                 square copy = list_of_square_at_current_level[i];
                 copy.is_infected = true;
@@ -53,11 +60,26 @@ public class InfectClick : MonoBehaviour
                 level_gen_script_reference.all_squares_list[index] = copy;
                 break;
             }
+            else
+            {
+                level_filled = true;
+            }
         }
 
-        //check current level
+        //check if level is filled
+        if (level_filled & !level_upgrade_unlocked)
+        {
+            IBCount += 0;
+        }
+        else
+        {
+            IBCount += IBPClick;
+        }
 
-        bool should_inc_level = true;
+
+            //check current level
+
+            bool should_inc_level = true;
         foreach (square sq in list_of_square_at_current_level)
         {
             if (!(sq.is_infected))
@@ -66,9 +88,10 @@ public class InfectClick : MonoBehaviour
                 break;
             }
         }
-        if (should_inc_level)
+        if (should_inc_level & level_upgrade_unlocked)
         {
             current_level++;
+            level_upgrade_unlocked = false;
         }
         print(current_level);
 
