@@ -10,7 +10,7 @@ using UnityEngine;
 public class level_gen_script : MonoBehaviour
 {
     // Start is called before the first frame update
-    private all_game_variables game_variable_script;
+    [SerializeField] all_game_variables game_variable_script;
     [SerializeField] GameObject square_uninfected;
     [System.NonSerialized] public List<square> all_squares_list = new List<square>();
     [SerializeField] Camera main_camera;
@@ -27,7 +27,7 @@ public class level_gen_script : MonoBehaviour
 
     void Start()
     {
-        game_variable_script = GetComponent<all_game_variables>();
+         
 
 
 

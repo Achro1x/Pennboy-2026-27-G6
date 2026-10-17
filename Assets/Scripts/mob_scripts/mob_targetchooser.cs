@@ -12,7 +12,7 @@ public class mob_targetchooser : MonoBehaviour
         clicker = FindFirstObjectByType<InfectClick>();
     }
 
-    public Vector3? FindNearestRedSquare()
+    public square FindNearestRedSquare()
     {
         if (level_generator == null)
             return null;
@@ -20,7 +20,8 @@ public class mob_targetchooser : MonoBehaviour
         Vector3 mob_position = transform.position;
 
         float closest_distance = float.MaxValue;
-        Vector3? closest_location = null;
+        square closest_sq = level_generator.list_of_square_in_level_index[clicker.current_level][0] ;
+        Vector3? closest_location = level_generator.list_of_square_in_level_index[clicker.current_level][0].location - mob_position;
         foreach (square square
             in level_generator.list_of_square_in_level_index[clicker.current_level])
     {
@@ -35,9 +36,10 @@ public class mob_targetchooser : MonoBehaviour
         {
             closest_distance = distance;
             closest_location = square.location;
+            closest_sq = square;
         }
     }
-    return closest_location;
+    return closest_sq;
     }
     // Update is called once per frame
     void Update()
