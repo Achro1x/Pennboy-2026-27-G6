@@ -20,9 +20,13 @@ public class all_game_variables: MonoBehaviour
 
     //player inventory
     public float spore_owned;
+ 
 
+
+    
     void Start()
     {
+
         map_size = 500;
         number_of_infected_blocks = 0;
         number_of_uninfected_blocks = map_size*map_size;
@@ -31,6 +35,7 @@ public class all_game_variables: MonoBehaviour
         infected_block_per_click = 1;
         mob_spawn_rate = 0;
         spore_owned = 0;
+ 
     }
 
     // Update is called once per frame
