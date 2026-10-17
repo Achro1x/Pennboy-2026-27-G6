@@ -77,6 +77,7 @@ public class InfectClick : MonoBehaviour
         /*if (level_filled)
         {
             IBCount += 0;
+            print("true");
         }
         else
         {

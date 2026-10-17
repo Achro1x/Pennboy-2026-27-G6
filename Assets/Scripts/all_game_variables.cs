@@ -5,10 +5,10 @@ using UnityEngine;
 public class all_game_variables: MonoBehaviour
 {
     //level settings
-    public int map_size;
+    public int map_size = 5;
 
     //number of generators
-    public int number_of_infected_blocks;
+    public int number_of_infected_blocks = 1;
     public int number_of_uninfected_blocks;
 
     //rates
@@ -19,7 +19,10 @@ public class all_game_variables: MonoBehaviour
 
 
     //player inventory
-    public float spore_owned;
+    public float spore_owned = 0;
+
+
+
 
     void Start()
     {
