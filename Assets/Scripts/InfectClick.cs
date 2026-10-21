@@ -15,7 +15,7 @@ public class InfectClick : MonoBehaviour
 
     public bool level_filled = false;
 
-
+    [SerializeField] main_sound_manager sound_manager;
     [SerializeField] level_gen_script level_gen_script_reference;
     public int current_level;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -101,5 +101,10 @@ public class InfectClick : MonoBehaviour
 
 
         data.number_of_infected_blocks = IBCount;
+
+
+
+
+        sound_manager.play_sound(3);
     }
 }

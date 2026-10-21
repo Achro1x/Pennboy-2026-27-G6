@@ -14,6 +14,8 @@ public class upgrades : MonoBehaviour
     public TMP_Text ibPrice_text;
     public TMP_Text sporePrice_text;
 
+    [SerializeField] main_sound_manager main_sound_manager; 
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,11 +49,19 @@ public class upgrades : MonoBehaviour
 
             levelPrice_text.text = "Price: " + next_level_purchase_price;
 
-
+            main_sound_manager.play_sound(2);
+        }
+        else
+        {
+            main_sound_manager.play_sound(4);
         }
 
 
-        levelPrice_text.text = "Price: " + next_level_purchase_price;
+            levelPrice_text.text = "Price: " + next_level_purchase_price;
+
+
+
+        
     }
 
     public void Upgrade_click_up()
@@ -68,11 +78,19 @@ public class upgrades : MonoBehaviour
 
             all_game_var_script.infected_block_per_click += 1;
 
-
+            main_sound_manager.play_sound(2);
+        }
+        else
+        {
+            main_sound_manager.play_sound(4);
         }
 
 
-        ibPrice_text.text = "Price: " + next_level_purchase_price;
+            ibPrice_text.text = "Price: " + next_level_purchase_price;
+
+
+
+        
     }
 
     public void Upgrade_wait_up()
@@ -89,10 +107,19 @@ public class upgrades : MonoBehaviour
 
             all_game_var_script.spore_per_sec += 1;
 
+            main_sound_manager.play_sound(2);
+
+        }
+        else
+        {
+            main_sound_manager.play_sound(4);
         }
 
 
-        sporePrice_text.text = "Price: " + next_level_purchase_price;
+            sporePrice_text.text = "Price: " + next_level_purchase_price;
 
+
+
+        
     }
 }

@@ -21,7 +21,7 @@ public class mob_targetchooser : MonoBehaviour
 
         float closest_distance = float.MaxValue;
         square closest_sq = level_generator.list_of_square_in_level_index[clicker.current_level][0] ;
-        Vector3? closest_location = level_generator.list_of_square_in_level_index[clicker.current_level][0].location - mob_position;
+        //Vector3? closest_location = level_generator.list_of_square_in_level_index[clicker.current_level][0].location - mob_position;
         foreach (square square
             in level_generator.list_of_square_in_level_index[clicker.current_level])
     {
@@ -35,7 +35,7 @@ public class mob_targetchooser : MonoBehaviour
         if (distance < closest_distance)
         {
             closest_distance = distance;
-            closest_location = square.location;
+            //closest_location = square.location;
             closest_sq = square;
         }
     }

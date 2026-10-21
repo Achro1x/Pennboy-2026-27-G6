@@ -110,19 +110,30 @@ public class enemy_spawner : MonoBehaviour
 
                 // are we on the target block yet?? 
                 bool are_we_at_target_blcok = false;
+                if (spooky_hungry_enemy.location == spooky_hungry_enemy.target_block.location)
+                {
+                    are_we_at_target_blcok = true;
+                }
+
 
                 if (are_we_at_target_blcok)
                 {
+                    
                     //hell yea. E A T 
                     //eating_progress is the current percentage progress.
                     float blocks_eaten_per_sec = 1 / spooky_hungry_enemy.eat_speeed;
                     spooky_hungry_enemy.eating_progress += blocks_eaten_per_sec * Time.deltaTime;
-
+                    print(spooky_hungry_enemy.eating_progress);
                     if (spooky_hungry_enemy.eating_progress >= 1)
                     {
                         //block is no longer infected:
                         spooky_hungry_enemy.target_block.is_infected = false;
-                        print("not infected!!");
+                        spooky_hungry_enemy.target_block = targetchooser_script.FindNearestRedSquare();
+
+                    }
+                    if (!spooky_hungry_enemy.target_block.is_infected)
+                    {
+                        spooky_hungry_enemy.target_block = targetchooser_script.FindNearestRedSquare();
                     }
 
                 }
