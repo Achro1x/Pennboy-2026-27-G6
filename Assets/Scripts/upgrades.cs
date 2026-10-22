@@ -44,6 +44,7 @@ public class upgrades : MonoBehaviour
 
             infect_script.current_level++;
             infect_script.level_filled = false;
+            infect_script.square_index = infect_script.generate_list();
 
             levelPrice_text.text = "Price: " + next_level_purchase_price;
 
