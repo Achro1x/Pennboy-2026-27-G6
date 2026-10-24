@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] TrailRenderer trail;
     [SerializeField] SFX_player sfx_player_ref;
     private AudioSource sfx_player;
+    [SerializeField] AudioSource nonlethalsfx_player;
 
 
     private float timer = 0;
@@ -60,6 +61,10 @@ public class PlayerAttack : MonoBehaviour
 
 
 
+                    }
+                    else
+                    {
+                        nonlethalsfx_player.Play();
                     }
                 }
                 else if (!spooky_enemy.hitbox.Contains(cursor_pos) && spooky_enemy.last_hit)

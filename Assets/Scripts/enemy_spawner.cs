@@ -47,7 +47,7 @@ public class enemy_spawner : MonoBehaviour
         //enemy move, eat and health is porportional to current level 
         enemy_move_speed = Mathf.Max(0.5f, current_level_ref / 2f);
         enemy_eat_speed = 2;
-        enemy_health = current_level_ref / 2;
+        enemy_health = current_level_ref +2 ;
 
 
         //find target block based on the spawn location. This should be updated after every block consumed. 
@@ -191,7 +191,7 @@ public class enemy_spawner : MonoBehaviour
 
             /// BELOW IS RENDERING CODDE FOR ENEMIES
             MaterialPropertyBlock beetle_property_block = new MaterialPropertyBlock();
-            beetle_property_block.SetColor(Shader.PropertyToID("_BaseColor"), Color.red);
+            beetle_property_block.SetColor(Shader.PropertyToID("_BaseColor"), Color.white);
             beetle_render_params = new RenderParams(beetle_material)
             {
                 matProps = beetle_property_block,
