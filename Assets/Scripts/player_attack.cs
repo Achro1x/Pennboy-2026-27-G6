@@ -40,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
                     enemy_spawner_script.all_enemy_list[i].health -= data_storage.player_attack * Time.deltaTime;
 
                     damage_particle.transform.position = cursor_pos;
-                print(damage_particle.transform.position);
+                    print(damage_particle.transform.position);
                     damage_particle.Play();
                     print("killling enemy");
                     if (enemy_spawner_script.all_enemy_list[i].health <= 0)
