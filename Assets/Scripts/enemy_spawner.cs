@@ -62,7 +62,8 @@ public class enemy_spawner : MonoBehaviour
 
         for (int i = 0; i < data_storage.mob_spawn_rate; i++)
         {
-            enemy new_enemy = new enemy(0, enemy_spawn_location, enemy_move_speed, enemy_eat_speed, enemy_health, target_block, 0f);
+            Rect hitbox = new Rect(i - 5, j - 5, 10, 10);
+            enemy new_enemy = new enemy(0, enemy_spawn_location, enemy_move_speed, enemy_eat_speed, enemy_health, target_block, 0f, hitbox);
             all_enemy_list.Add(new_enemy);
         }
     }

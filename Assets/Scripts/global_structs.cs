@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEngine.Rendering.DebugUI;
 
 [System.Serializable]
 
@@ -10,16 +11,16 @@ public class square
     public Vector3 location;
     public bool is_infected;
     public bool is_targeted;
-    public Rect hitbox;
+    
 
 
-    public square(int id, Vector3 location, bool is_infected, bool is_targeted, Rect hitbox)
+    public square(int id, Vector3 location, bool is_infected, bool is_targeted)
     {
         this.id = id;
         this.location = location;
         this.is_infected = is_infected;
         this.is_targeted = is_targeted;
-        this.hitbox = hitbox;
+
     }
 }
 
@@ -32,8 +33,9 @@ public class enemy
     public float health;
     public square target_block;
     public float eating_progress; //1 --> finished consuming. progression fraction
+    public Rect hitbox;
 
-    public enemy(int id, Vector3 location, float move_speed, float eat_speeed, float health, square target_block, float eating_progress)
+    public enemy(int id, Vector3 location, float move_speed, float eat_speeed, float health, square target_block, float eating_progress, Rect hitbox)
     {
         this.id = id;
         this.location = location;
@@ -41,8 +43,9 @@ public class enemy
         this.eat_speeed = eat_speeed;
         this.health = health;
         this.target_block = target_block;
-        this.eating_progress = eating_progress; 
+        this.eating_progress = eating_progress;
+        this.hitbox = hitbox;
 
 
-}
+    }
 }
