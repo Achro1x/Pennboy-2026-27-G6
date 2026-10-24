@@ -47,8 +47,8 @@ public class level_gen_script : MonoBehaviour
         {
             for (int j = -size; j < size; j++)
             {
-                Rect hitbox = new Rect(i-5,j-5,10,10);
-                square new_square = new square(index, new Vector3(i, j, 0), false, false, hitbox);
+                
+                square new_square = new square(index, new Vector3(i, j, 0), false, false);
 
                 all_squares_list.Add(new_square);
                 index++;
