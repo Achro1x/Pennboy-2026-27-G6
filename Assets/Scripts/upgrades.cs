@@ -13,6 +13,8 @@ public class upgrades : MonoBehaviour
     public TMP_Text levelPrice_text;
     public TMP_Text ibPrice_text;
     public TMP_Text sporePrice_text;
+    [SerializeField] TMP_Text attackUP_Text;
+
 
 
     [SerializeField] SFX_player sfx_player_ref;
@@ -29,8 +31,8 @@ public class upgrades : MonoBehaviour
         levelPrice_text.text = "Price: " + level_price(infect_script.current_level);
         ibPrice_text.text = "Price: " + click_price(all_game_var_script.infected_block_per_click);
         sporePrice_text.text = "Price: " + spore_price(all_game_var_script.spore_per_sec);
-
-
+ 
+        attackUP_Text.text = "Attack+ Price: " +  attack_price(all_game_var_script.player_attack) ;
 
 
 
@@ -47,11 +49,16 @@ public class upgrades : MonoBehaviour
     }
 
     int click_price(int infected_block_per_click){
-        return (int)Mathf.Pow(infected_block_per_click * 20, 1.5f);
+        return (int)Mathf.Pow(infected_block_per_click * 20, 2.5f);
     }
 
     int spore_price(int spore_per_sec){
         return (int)Mathf.Pow(spore_per_sec * 2, 1.45f);
+    }
+
+    int attack_price (float attack)
+    {
+        return (int)Mathf.Pow(attack * 50, 1.5f);
     }
     public void Upgrade_level_up()
     {
@@ -150,6 +157,36 @@ public class upgrades : MonoBehaviour
 
 
 
+    }
+
+    public void Upgrade_attack()
+    {
+        //enable player to unlock the next level (moreclicking)
+        int purchase_price = attack_price(all_game_var_script.player_attack);
+        //LOOOK HERE TO INSERT BALANCE FUNCTION!!!!
+
+        //print(infect_script.current_level);
+
+        if (all_game_var_script.spore_owned >= purchase_price)
+        {
+            all_game_var_script.spore_owned -= purchase_price;
+
+            all_game_var_script.player_attack += 1;
+
+            purchase_price = attack_price(all_game_var_script.player_attack);
+
+            //attackUP_Text.text = "Attack+: " + all_game_var_script.player_attack;
+            attackUP_Text.text = "Attack+ Price: " + purchase_price;
+
+            sfx_player.clip = sfx_player_ref.audio_clips[0];
+            sfx_player.Play();
+
+        }
+        else
+        {
+            sfx_player.clip = sfx_player_ref.audio_clips[2];
+            sfx_player.Play();
+        }
     }
 
     //balance functions for upgrades
