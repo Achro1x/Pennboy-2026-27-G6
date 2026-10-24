@@ -17,6 +17,32 @@ public class mob_targetchooser : MonoBehaviour
         level_generator = FindFirstObjectByType<level_gen_script>();
         clicker = FindFirstObjectByType<InfectClick>();
     }
+    public square FindTargetableBlock()
+    {
+        //current level list shoudl be adjusted based on the number of squares left on the list
+        int refernce_level = clicker.current_level; 
+        int number_of_enemy = enemy_spawner_script.all_enemy_list.Count;
+ 
+        while (refernce_level >= 0)
+        {
+            //find number of viable sq in current level
+
+            foreach (square square
+                in level_generator.list_of_square_in_level_index[refernce_level])
+            {
+                if (square.is_infected && !square.is_targeted)
+                {
+                    return square;
+
+                }
+            }
+   
+                refernce_level -= 1;
+ 
+        }
+        return null;
+
+    }
 
     public square FindNearestRedSquare(Vector3 loc)
     {
@@ -35,7 +61,7 @@ public class mob_targetchooser : MonoBehaviour
 
         int number_of_enemy = enemy_spawner_script.all_enemy_list.Count;
 
-        if (number_of_enemy <= data_storage.number_of_infected_blocks)
+        if (FindTargetableBlock() != null)
         {
             while (number_of_viable_sq == 0)
             {
@@ -52,7 +78,7 @@ public class mob_targetchooser : MonoBehaviour
                 if (number_of_viable_sq == 0)
                 {
                     refernce_level -= 1;
-                    print(refernce_level);
+                    
                 }
             }
 
@@ -85,15 +111,19 @@ public class mob_targetchooser : MonoBehaviour
 
         else
         {
-             
-            return level_generator.all_squares_list[0];
+
+            return null;
         }
 
 
     }
+
+
+
     // Update is called once per frame
     void Update()
     {
         
+
     }
 }

@@ -15,6 +15,9 @@ public class upgrades : MonoBehaviour
     public TMP_Text sporePrice_text;
 
 
+    [SerializeField] SFX_player sfx_player_ref;
+    private AudioSource sfx_player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +29,12 @@ public class upgrades : MonoBehaviour
         levelPrice_text.text = "Price: " + level_price(infect_script.current_level);
         ibPrice_text.text = "Price: " + click_price(all_game_var_script.infected_block_per_click);
         sporePrice_text.text = "Price: " + spore_price(all_game_var_script.spore_per_sec);
+
+
+
+
+
+        sfx_player = sfx_player_ref.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -65,6 +74,14 @@ public class upgrades : MonoBehaviour
             levelPrice_text.text = "Price: " + purchase_price;
 
 
+            sfx_player.clip = sfx_player_ref.audio_clips[0];
+            sfx_player.Play();
+
+        }
+        else
+        {
+            sfx_player.clip = sfx_player_ref.audio_clips[2];
+            sfx_player.Play();
         }
 
     }
@@ -88,6 +105,15 @@ public class upgrades : MonoBehaviour
             ibUP_Text.text = "Click UP: " + all_game_var_script.infected_block_per_click; 
             ibPrice_text.text = "Price: " + purchase_price;
 
+
+            sfx_player.clip = sfx_player_ref.audio_clips[0];
+            sfx_player.Play();
+
+        }
+        else
+        {
+            sfx_player.clip = sfx_player_ref.audio_clips[2];
+            sfx_player.Play();
         }
 
 
@@ -112,6 +138,14 @@ public class upgrades : MonoBehaviour
             sporeUP_Text.text = "Spore Gen UP: " + all_game_var_script.spore_per_sec;
             sporePrice_text.text = "Price: " + purchase_price;
 
+            sfx_player.clip = sfx_player_ref.audio_clips[0];
+            sfx_player.Play();
+
+        }
+        else
+        {
+            sfx_player.clip = sfx_player_ref.audio_clips[2];
+            sfx_player.Play();
         }
 
 

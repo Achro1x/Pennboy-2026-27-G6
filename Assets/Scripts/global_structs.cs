@@ -34,8 +34,9 @@ public class enemy
     public square target_block;
     public float eating_progress; //1 --> finished consuming. progression fraction
     public Rect hitbox;
+    public bool last_hit;
 
-    public enemy(int id, Vector3 location, float move_speed, float eat_speeed, float health, square target_block, float eating_progress, Rect hitbox)
+    public enemy(int id, Vector3 location, float move_speed, float eat_speeed, float health, square target_block, float eating_progress, Rect hitbox, bool last_hit)
     {
         this.id = id;
         this.location = location;
@@ -45,6 +46,7 @@ public class enemy
         this.target_block = target_block;
         this.eating_progress = eating_progress;
         this.hitbox = hitbox;
+        this.last_hit = last_hit;
 
 
     }

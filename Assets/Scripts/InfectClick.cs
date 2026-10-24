@@ -21,6 +21,9 @@ public class InfectClick : MonoBehaviour
     [SerializeField] level_gen_script level_gen_script_reference;
     public List<square> eaten_block_list = new List<square>();
 
+    [SerializeField] SFX_player sfx_player_ref; 
+    private AudioSource sfx_player;
+
     public int current_level;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +33,7 @@ public class InfectClick : MonoBehaviour
         current_level = 0;
         
         square_index = new List<int> { 0 };
+        sfx_player = sfx_player_ref.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -73,6 +77,7 @@ public class InfectClick : MonoBehaviour
                 {
                     level_filled = true;
                     break;
+
                 }
 
                 int randomIndex = Random.Range(0, square_index.Count);
@@ -82,6 +87,9 @@ public class InfectClick : MonoBehaviour
                 data.number_of_infected_blocks = IBCount;
 
                 square_index.RemoveAt(randomIndex);
+
+                sfx_player.clip = sfx_player_ref.audio_clips[1];
+                sfx_player.Play();
             }
 
 
