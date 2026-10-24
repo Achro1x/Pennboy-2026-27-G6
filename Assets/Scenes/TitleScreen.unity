@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 146014204}
   - component: {fileID: 146014203}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Title_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 308731961}
   - component: {fileID: 308731960}
   - component: {fileID: 308731959}
+  - component: {fileID: 308731963}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -503,6 +504,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &308731963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308731958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 365dd1db86a37f945b752438cc1ec734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadScene
 --- !u!1 &577502610
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +528,7 @@ GameObject:
   - component: {fileID: 577502613}
   - component: {fileID: 577502612}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1184,10 +1197,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.SceneAsset, UnityEditor.CoreModule
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 308731963}
+        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+        m_MethodName: Load_Scene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

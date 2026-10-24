@@ -35,7 +35,7 @@ public class InfectClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IBtext.text = "Current Infected Blocks: " + IBCount;
+        IBtext.text = "Current Infected Blocks: " + data.number_of_infected_blocks;
         IBPClick = data.infected_block_per_click;
         
     }
@@ -63,7 +63,9 @@ public class InfectClick : MonoBehaviour
             {
                 eaten_block_list[0].is_infected = true;
                 eaten_block_list.Remove(eaten_block_list[0]);
+                
                 IBCount++;
+                data.number_of_infected_blocks = IBCount;
             }
             else
             {
@@ -75,7 +77,10 @@ public class InfectClick : MonoBehaviour
 
                 int randomIndex = Random.Range(0, square_index.Count);
                 list_of_square_at_current_level[square_index[randomIndex]].is_infected = true;
+
                 IBCount++;
+                data.number_of_infected_blocks = IBCount;
+
                 square_index.RemoveAt(randomIndex);
             }
 
@@ -115,6 +120,7 @@ public class InfectClick : MonoBehaviour
         else
         {
             IBCount += IBPClick;
+            data.number_of_infected_blocks = IBCount;
         }*/
 
 
