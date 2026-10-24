@@ -1334,6 +1334,7 @@ MonoBehaviour:
   level_filled: 0
   square_index: 
   level_gen_script_reference: {fileID: 1472735964}
+  eaten_block_list: []
   current_level: 0
 --- !u!223 &835326994
 Canvas:
@@ -1660,6 +1661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0b956f19a3f4c4c8c00bc89b6d1b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::mob_targetchooser
+  enemy_spawner_script: {fileID: 965618675}
+  data_storage: {fileID: 1108149585}
 --- !u!114 &965618675
 MonoBehaviour:
   m_ObjectHideFlags: 0

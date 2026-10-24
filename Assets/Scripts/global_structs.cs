@@ -8,12 +8,14 @@ public class square
     public int id;
     public Vector3 location;
     public bool is_infected;
+    public bool is_targeted;
  
-    public square(int id, Vector3 location, bool is_infected)
+    public square(int id, Vector3 location, bool is_infected, bool is_targeted)
     {
         this.id = id;
         this.location = location;
         this.is_infected = is_infected;
+        this.is_targeted = is_targeted;
 
     }
 }

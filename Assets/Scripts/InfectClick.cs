@@ -19,6 +19,7 @@ public class InfectClick : MonoBehaviour
 
 
     [SerializeField] level_gen_script level_gen_script_reference;
+    public List<square> eaten_block_list = new List<square>();
 
     public int current_level;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -55,18 +56,29 @@ public class InfectClick : MonoBehaviour
         List<square> list_of_square_at_current_level = level_gen_script_reference.list_of_square_in_level_index[current_level];
         int num_of_square_at_current_level = list_of_square_at_current_level.Count;
 
-
+        //if eaten_block_list is not empty, fill those first
         //pick random square in current_level 
         for (int i = 0; i < IBPClick; i++){
-            if (square_index.Count == 0){
-                level_filled = true;
-                break;
+            if (eaten_block_list.Count != 0)
+            {
+                eaten_block_list[0].is_infected = true;
+                eaten_block_list.Remove(eaten_block_list[0]);
+                IBCount++;
+            }
+            else
+            {
+                if (square_index.Count == 0)
+                {
+                    level_filled = true;
+                    break;
+                }
+
+                int randomIndex = Random.Range(0, square_index.Count);
+                list_of_square_at_current_level[square_index[randomIndex]].is_infected = true;
+                IBCount++;
+                square_index.RemoveAt(randomIndex);
             }
 
-            int randomIndex = Random.Range(0, square_index.Count);
-            list_of_square_at_current_level[square_index[randomIndex]].is_infected = true;
-            IBCount ++;
-            square_index.RemoveAt(randomIndex);
 
         }
 
