@@ -11,6 +11,7 @@ public class all_game_variables: MonoBehaviour
     public int number_of_infected_blocks = 1;
     public int number_of_uninfected_blocks;
 
+
     //rates
     public int spore_per_sec;
     public int infected_block_per_sec;
@@ -22,11 +23,9 @@ public class all_game_variables: MonoBehaviour
     public float spore_owned = 0;
 
 
-
-
     void Start()
     {
-        map_size = 5;
+        map_size = 11;
         number_of_infected_blocks = 0;
         number_of_uninfected_blocks = map_size*map_size*4;
         spore_per_sec = 5;
