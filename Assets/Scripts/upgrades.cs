@@ -18,81 +18,106 @@ public class upgrades : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        levelUP_Text.text = "Lv UP: " + 1; 
+        ibUP_Text.text = "Click UP: " + 1; 
+        sporeUP_Text.text = "Spore Gen UP: " + 5;
+
+
+        levelPrice_text.text = "Price: " + level_price(infect_script.current_level);
+        ibPrice_text.text = "Price: " + click_price(all_game_var_script.infected_block_per_click);
+        sporePrice_text.text = "Price: " + spore_price(all_game_var_script.spore_per_sec);
     }
 
     // Update is called once per frame
     void Update()
     {
-        levelUP_Text.text = "Lv UP: " + infect_script.current_level; 
-        ibUP_Text.text = "Click UP: " + all_game_var_script.infected_block_per_click; 
-        sporeUP_Text.text = "Spore Gen UP: " + all_game_var_script.spore_per_sec;
+
+    }
+    int level_price(int current_level){
+        return (int)Mathf.Pow((current_level+0.5f)*20, 2.5f);
     }
 
+    int click_price(int infected_block_per_click){
+        return (int)Mathf.Pow(infected_block_per_click * 20, 1.5f);
+    }
+
+    int spore_price(int spore_per_sec){
+        return (int)Mathf.Pow(spore_per_sec * 2, 1.45f);
+    }
     public void Upgrade_level_up()
     {
         //enable player to unlock the next level (moreclicking)
-        int next_level_purchase_price = (infect_script.current_level+1)*20 ;
+        int purchase_price = level_price(infect_script.current_level);
         //LOOOK HERE TO INSERT BALANCE FUNCTION!!!!
 
-        print(next_level_purchase_price);
-        print(infect_script.level_filled);
 
-        if ((all_game_var_script.spore_owned >= next_level_purchase_price) & infect_script.level_filled)
+        if ((all_game_var_script.spore_owned >= purchase_price) & infect_script.level_filled)
         {
-            all_game_var_script.spore_owned -= next_level_purchase_price;
+            all_game_var_script.spore_owned -= purchase_price;
 
             infect_script.current_level++;
             infect_script.level_filled = false;
+            infect_script.square_index = infect_script.generate_list();
 
-            levelPrice_text.text = "Price: " + next_level_purchase_price;
+            purchase_price = level_price(infect_script.current_level);
+
+            levelUP_Text.text = "Lv UP: " + infect_script.current_level; 
+            levelPrice_text.text = "Price: " + purchase_price;
 
 
         }
 
-
-        levelPrice_text.text = "Price: " + next_level_purchase_price;
     }
 
     public void Upgrade_click_up()
     {
         //enable player to unlock the next level (moreclicking)
-        int next_level_purchase_price = all_game_var_script.infected_block_per_click * 10;
+        int purchase_price = click_price(all_game_var_script.infected_block_per_click);
         //LOOOK HERE TO INSERT BALANCE FUNCTION!!!!
 
         //print(infect_script.current_level);
 
-        if (all_game_var_script.spore_owned >= next_level_purchase_price)
+        if (all_game_var_script.spore_owned >= purchase_price)
         {
-            all_game_var_script.spore_owned -= next_level_purchase_price;
+            all_game_var_script.spore_owned -= purchase_price;
 
             all_game_var_script.infected_block_per_click += 1;
 
+            purchase_price = click_price(all_game_var_script.infected_block_per_click);
+
+            ibUP_Text.text = "Click UP: " + all_game_var_script.infected_block_per_click; 
+            ibPrice_text.text = "Price: " + purchase_price;
 
         }
 
 
-        ibPrice_text.text = "Price: " + next_level_purchase_price;
     }
 
     public void Upgrade_wait_up()
     {
         //enable player to unlock the next level (moreclicking)
-        int next_level_purchase_price = all_game_var_script.spore_per_sec * 5;
+        int purchase_price = spore_price(all_game_var_script.spore_per_sec);
         //LOOOK HERE TO INSERT BALANCE FUNCTION!!!!
 
         //print(infect_script.current_level);
 
-        if (all_game_var_script.spore_owned >= next_level_purchase_price)
+        if (all_game_var_script.spore_owned >= purchase_price)
         {
-            all_game_var_script.spore_owned -= next_level_purchase_price;
+            all_game_var_script.spore_owned -= purchase_price;
 
             all_game_var_script.spore_per_sec += 1;
+
+            purchase_price = spore_price(all_game_var_script.spore_per_sec);
+
+            sporeUP_Text.text = "Spore Gen UP: " + all_game_var_script.spore_per_sec;
+            sporePrice_text.text = "Price: " + purchase_price;
 
         }
 
 
-        sporePrice_text.text = "Price: " + next_level_purchase_price;
 
     }
+
+    //balance functions for upgrades
+
 }
