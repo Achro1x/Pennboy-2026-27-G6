@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [System.Serializable]
 
@@ -9,14 +10,16 @@ public class square
     public Vector3 location;
     public bool is_infected;
     public bool is_targeted;
- 
-    public square(int id, Vector3 location, bool is_infected, bool is_targeted)
+    public Rect hitbox;
+
+
+    public square(int id, Vector3 location, bool is_infected, bool is_targeted, Rect hitbox)
     {
         this.id = id;
         this.location = location;
         this.is_infected = is_infected;
         this.is_targeted = is_targeted;
-
+        this.hitbox = hitbox;
     }
 }
 
