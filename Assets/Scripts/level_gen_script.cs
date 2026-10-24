@@ -15,6 +15,7 @@ public class level_gen_script : MonoBehaviour
     [System.NonSerialized] public List<square> all_squares_list = new List<square>();
     [SerializeField] Camera main_camera;
     [SerializeField] private Material unlit_material;
+    [SerializeField] private Material lit_material;
 
     private RenderParams infected_render_params;
     private RenderParams uninfected_render_params;
@@ -61,8 +62,8 @@ public class level_gen_script : MonoBehaviour
         }
 
         MaterialPropertyBlock infected_property_block = new MaterialPropertyBlock();
-        infected_property_block.SetColor(Shader.PropertyToID("_BaseColor"), Color.red);
-        infected_render_params = new RenderParams(unlit_material)
+        infected_property_block.SetColor(Shader.PropertyToID("_BaseColor"), Color.white);
+        infected_render_params = new RenderParams(lit_material)
         {
             matProps = infected_property_block,
            //worldBounds = new Bounds(Vector3.zero, Vector3.one * 10000f)

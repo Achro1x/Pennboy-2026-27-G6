@@ -30,6 +30,11 @@ public class player_movement : MonoBehaviour
             cam.orthographicSize = 3;
         }
 
+        if(cam.orthographicSize >= 12){
+            cam.orthographicSize = 12;
+        }
+
+
     }
 
 }

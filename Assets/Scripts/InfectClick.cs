@@ -39,7 +39,7 @@ public class InfectClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IBtext.text = "Current Infected Blocks: " + data.number_of_infected_blocks;
+        IBtext.text = ": " + data.number_of_infected_blocks;
         IBPClick = data.infected_block_per_click;
         
     }
