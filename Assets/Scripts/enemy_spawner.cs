@@ -55,7 +55,7 @@ public class enemy_spawner : MonoBehaviour
         square target_block = targetchooser_script.FindNearestRedSquare(enemy_spawn_location);
 
         //spawn rate scales acoording to level -> 
-        data_storage.mob_spawn_rate = current_level_ref;
+        data_storage.mob_spawn_rate = current_level_ref*2;
         print("mob sr" + data_storage.mob_spawn_rate + current_level_ref);
 
         //spawn enemy numbers depending on current level^2
