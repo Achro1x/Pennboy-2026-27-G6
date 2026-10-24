@@ -9,13 +9,16 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] enemy_spawner enemy_spawner_script;
     [SerializeField] Camera main_camera;
     [SerializeField] TrailRenderer trail;
+    [SerializeField] SFX_player sfx_player_ref;
+    private AudioSource sfx_player;
+
 
     private float timer = 0;
     private int kills = 0; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        sfx_player = sfx_player_ref.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,8 +54,11 @@ public class PlayerAttack : MonoBehaviour
                         }
 
                         enemy_spawner_script.all_enemy_list.Remove(enemy_spawner_script.all_enemy_list[i]);
-                       
-                         
+
+                        sfx_player.clip = sfx_player_ref.audio_clips[3];
+                        sfx_player.Play();
+
+
 
                     }
                 }

@@ -834,6 +834,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9f91b702c1806f74899948dc867a007f, type: 3}
   - {fileID: 8300000, guid: 22327737d02da4848a7a7f859d610627, type: 3}
   - {fileID: 8300000, guid: 8e8d35433fc22d34e96e8dcdb398fb8d, type: 3}
+  - {fileID: 8300000, guid: 83813f79e4eec104e8be4fda8fc4ef61, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,6 +1263,7 @@ MonoBehaviour:
   enemy_spawner_script: {fileID: 965618675}
   main_camera: {fileID: 519420031}
   trail: {fileID: 1795087491}
+  sfx_player_ref: {fileID: 500251806}
 --- !u!4 &644192565
 Transform:
   m_ObjectHideFlags: 0

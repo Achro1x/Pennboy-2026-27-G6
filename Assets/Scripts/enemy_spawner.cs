@@ -22,9 +22,10 @@ public class enemy_spawner : MonoBehaviour
     private float enemy_move_speed;
     private float enemy_eat_speed;
     private float enemy_health;
-    private int seconds_per_enemy;
+    private float seconds_per_enemy;
 
     [SerializeField] mob_targetchooser targetchooser_script;
+
 
     void Start()
     {
@@ -44,7 +45,7 @@ public class enemy_spawner : MonoBehaviour
 
 
         //enemy move, eat and health is porportional to current level 
-        enemy_move_speed = current_level_ref / 2;
+        enemy_move_speed = Mathf.Max(0.5f, current_level_ref / 2f);
         enemy_eat_speed = 2;
         enemy_health = current_level_ref / 2;
 
@@ -60,8 +61,8 @@ public class enemy_spawner : MonoBehaviour
 
 
             enemy_spawn_location = new Vector3(
-                (Random.Range(0, 2) == 0 ? -1 : 1) * (current_level_ref + Random.Range(2, 7)),
-                (Random.Range(0, 2) == 0 ? -1 : 1) * (current_level_ref + Random.Range(2, 7)),
+                (Random.Range(0, 2) == 0 ? -1 : 1) * (current_level_ref + Random.Range(5, 10)),
+                (Random.Range(0, 2) == 0 ? -1 : 1) * (current_level_ref + Random.Range(5, 10)),
                 0);
 
             Rect hitbox = new Rect(enemy_spawn_location.x - 1, enemy_spawn_location.y - 1, 2, 2);
@@ -173,15 +174,16 @@ public class enemy_spawner : MonoBehaviour
                 }
             }
 
-            seconds_per_enemy = 10 / (current_level_ref + 1) ^ 2;
-            if (enemy_counter < seconds_per_enemy * Time.deltaTime || infect_click_script.current_level < 0 || targetchooser_script.FindTargetableBlock() == null)
+            enemy_counter += Time.deltaTime;
+            print("counter" + enemy_counter +"goal" + seconds_per_enemy);
+
+
+            //seconds_per_enemy = Mathf.Max(0.1f, (10f - 0.5f*current_level_ref));
+
+            seconds_per_enemy = 0.2f;
+            if (enemy_counter >= seconds_per_enemy && infect_click_script.current_level >= 0 && targetchooser_script.FindTargetableBlock() != null)
             {
-                 
-                enemy_counter += Time.deltaTime;
-            }
-            else
-            {
-                 
+                print("spawned");
                 spawn_enemy();
                 enemy_counter = 0;
             }
