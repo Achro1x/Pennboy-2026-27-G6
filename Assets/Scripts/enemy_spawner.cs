@@ -12,7 +12,7 @@ public class enemy_spawner : MonoBehaviour
     [SerializeField] all_game_variables data_storage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //enemies are stored in a list 
-    public List<enemy> all_enemy_list;
+    List<enemy> all_enemy_list;
     // render all enemmy in list. update update their positions accoridng to their target.
     // target is calculated everyframe as the closest infected block
 
@@ -47,15 +47,15 @@ public class enemy_spawner : MonoBehaviour
 
         //enemy move, eat and health is porportional to current level 
         enemy_move_speed = current_level_ref / 2;
-        enemy_eat_speed = 2;
+        enemy_eat_speed = 1;
         enemy_health = current_level_ref / 2;
 
 
         //find target block based on the spawn location. This should be updated after every block consumed. 
-        square target_block = targetchooser_script.FindNearestRedSquare(enemy_spawn_location);
+        square target_block = targetchooser_script.FindNearestRedSquare();
 
         //spawn rate scales acoording to level -> 
-        data_storage.mob_spawn_rate = current_level_ref;
+        data_storage.mob_spawn_rate = current_level_ref * 2;
         print("mob sr" + data_storage.mob_spawn_rate + current_level_ref);
 
         //spawn enemy numbers depending on current level^2
@@ -90,19 +90,15 @@ public class enemy_spawner : MonoBehaviour
     }
 
     float enemy_counter = 0; 
-     
-
     void Update()
     {
 
-        if (enemy_counter < 3 || infect_click_script.current_level < 2)
+        if (enemy_counter < 3)
         {
-            print(infect_click_script.current_level);
             enemy_counter += Time.deltaTime; 
         }
         else
         {
-            print("spawned!");
             spawn_enemy();
             enemy_counter = 0;
         }
@@ -115,11 +111,6 @@ public class enemy_spawner : MonoBehaviour
                 // are we on the target block yet?? 
                 bool are_we_at_target_blcok = false;
 
-                if (spooky_hungry_enemy.location == spooky_hungry_enemy.target_block.location)
-                {
-                    are_we_at_target_blcok = true;
-                }
-
                 if (are_we_at_target_blcok)
                 {
                     //hell yea. E A T 
@@ -130,16 +121,8 @@ public class enemy_spawner : MonoBehaviour
                     if (spooky_hungry_enemy.eating_progress >= 1)
                     {
                         //block is no longer infected:
-                         
-                        spooky_hungry_enemy.eating_progress = 0; 
                         spooky_hungry_enemy.target_block.is_infected = false;
-                        spooky_hungry_enemy.target_block.is_targeted = false;
-                        infect_click_script.eaten_block_list.Add(spooky_hungry_enemy.target_block);
-                        data_storage.number_of_infected_blocks-=1;
-                        print(data_storage.number_of_infected_blocks);
-                        spooky_hungry_enemy.target_block = targetchooser_script.FindNearestRedSquare(spooky_hungry_enemy.location);
-                        
-
+                        print("not infected!!");
                     }
 
                 }

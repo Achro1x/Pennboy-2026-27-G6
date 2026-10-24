@@ -10,8 +10,6 @@ public class uninfect_block_count : MonoBehaviour
     public TMP_Text uninfectText;
     public all_game_variables data;
 
-
-
     private int full_map_size;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +21,6 @@ public class uninfect_block_count : MonoBehaviour
     void Update()
     {
         data.number_of_uninfected_blocks = full_map_size - data.number_of_infected_blocks;
-        uninfectText.text = "Domination Progress: " + (float)data.number_of_infected_blocks / full_map_size*100 + "%"; 
+        uninfectText.text = "Domination Progress: " + data.number_of_uninfected_blocks; 
     }
 }

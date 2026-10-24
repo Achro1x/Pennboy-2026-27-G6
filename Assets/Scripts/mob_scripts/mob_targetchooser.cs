@@ -1,16 +1,10 @@
-using NUnit.Framework;
 using System.Collections;
-using System.Globalization;
-using Unity.VectorGraphics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class mob_targetchooser : MonoBehaviour
 {
     private level_gen_script level_generator;
     private InfectClick clicker;
-    [SerializeField] enemy_spawner enemy_spawner_script;
-    [SerializeField] all_game_variables data_storage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,78 +12,34 @@ public class mob_targetchooser : MonoBehaviour
         clicker = FindFirstObjectByType<InfectClick>();
     }
 
-    public square FindNearestRedSquare(Vector3 loc)
+    public square FindNearestRedSquare()
     {
         if (level_generator == null)
             return null;
 
-        Vector3 mob_position = loc;
+        Vector3 mob_position = transform.position;
 
         float closest_distance = float.MaxValue;
+        square closest_sq = level_generator.list_of_square_in_level_index[clicker.current_level][0] ;
+        Vector3? closest_location = level_generator.list_of_square_in_level_index[clicker.current_level][0].location - mob_position;
+        foreach (square square
+            in level_generator.list_of_square_in_level_index[clicker.current_level])
+    {
+        // find red squares
+        if (!square.is_infected)
+            continue;
 
-         
+        float distance =
+            (square.location - mob_position).sqrMagnitude;
 
-        //current level list shoudl be adjusted based on the number of squares left on the list
-        int refernce_level = clicker.current_level;
-        int number_of_viable_sq = 0;
-
-        int number_of_enemy = enemy_spawner_script.all_enemy_list.Count;
-
-        if (number_of_enemy <= data_storage.number_of_infected_blocks)
+        if (distance < closest_distance)
         {
-            while (number_of_viable_sq == 0)
-            {
-                //find number of viable sq in current level
-
-                foreach (square square
-                    in level_generator.list_of_square_in_level_index[refernce_level])
-                {
-                    if (square.is_infected && !square.is_targeted)
-                    {
-                        number_of_viable_sq += 1;
-                    }
-                }
-                if (number_of_viable_sq == 0)
-                {
-                    refernce_level -= 1;
-                    print(refernce_level);
-                }
-            }
-
-            square closest_sq = level_generator.list_of_square_in_level_index[refernce_level][0];
-
-            Vector3? closest_location = level_generator.list_of_square_in_level_index[clicker.current_level][0].location - mob_position;
-            foreach (square square
-                in level_generator.list_of_square_in_level_index[refernce_level])
-            {
-                // find red squares
-                if (!square.is_infected)
-                    continue;
-                if (square.is_targeted)
-                    continue;
-
-                float distance =
-                    (square.location - mob_position).sqrMagnitude;
-
-                if (distance < closest_distance)
-                {
-                    closest_distance = distance;
-                    closest_location = square.location;
-                    closest_sq = square;
-                }
-            }
-            closest_sq.is_targeted = true;
-            return closest_sq;
+            closest_distance = distance;
+            closest_location = square.location;
+            closest_sq = square;
         }
-
-
-        else
-        {
-            SceneManager.LoadScene("TitleScreen");
-            return null;
-        }
-
-
+    }
+    return closest_sq;
     }
     // Update is called once per frame
     void Update()
