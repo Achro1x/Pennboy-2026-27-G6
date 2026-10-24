@@ -85,8 +85,8 @@ public class mob_targetchooser : MonoBehaviour
 
         else
         {
-            SceneManager.LoadScene("TitleScreen");
-            return null;
+             
+            return level_generator.all_squares_list[0];
         }
 
 

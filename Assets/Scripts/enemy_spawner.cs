@@ -22,6 +22,7 @@ public class enemy_spawner : MonoBehaviour
     private float enemy_move_speed;
     private float enemy_eat_speed;
     private float enemy_health;
+    private int seconds_per_enemy;
 
     [SerializeField] mob_targetchooser targetchooser_script;
 
@@ -53,12 +54,11 @@ public class enemy_spawner : MonoBehaviour
 
         //spawn rate scales acoording to level -> 
         data_storage.mob_spawn_rate = current_level_ref*2;
-        print("mob sr" + data_storage.mob_spawn_rate + current_level_ref);
 
-        //spawn enemy numbers depending on current level^2
 
-        for (int i = 0; i < data_storage.mob_spawn_rate; i++)
-        {
+        //spawn 1 enemy numbers depending
+
+
             enemy_spawn_location = new Vector3(
                 (Random.Range(0, 2) == 0 ? -1 : 1) * (current_level_ref + Random.Range(2, 7)),
                 (Random.Range(0, 2) == 0 ? -1 : 1) * (current_level_ref + Random.Range(2, 7)),
@@ -67,7 +67,7 @@ public class enemy_spawner : MonoBehaviour
             Rect hitbox = new Rect(enemy_spawn_location.x - 5, enemy_spawn_location.y - 5, 10, 10);
             enemy new_enemy = new enemy(0, enemy_spawn_location, enemy_move_speed, enemy_eat_speed, enemy_health, target_block, 0f, hitbox);
             all_enemy_list.Add(new_enemy);
-        }
+        
     }
 
 
@@ -98,7 +98,8 @@ public class enemy_spawner : MonoBehaviour
     void Update()
     {
 
-        if (enemy_counter < 3 || infect_click_script.current_level < 2)
+        seconds_per_enemy = 10/(current_level_ref+1)^2;
+        if (enemy_counter < seconds_per_enemy*Time.deltaTime || infect_click_script.current_level < 2 || all_enemy_list.Count >= data_storage.number_of_infected_blocks)
         {
             print(infect_click_script.current_level);
             enemy_counter += Time.deltaTime; 
