@@ -40,10 +40,7 @@ public class enemy_spawner : MonoBehaviour
         current_level_ref = infect_click_script.current_level;
 
         //random location in a ring x>current level & y>> currrent level. spawn radius = 2-5
-        enemy_spawn_location = new Vector3(
-            (Random.Range(0, 2) == 0 ? -1 : 1) * (current_level_ref + Random.Range(2, 7)),
-            (Random.Range(0, 2) == 0 ? -1 : 1) * (current_level_ref + Random.Range(2, 7)),
-            0);
+
 
         //enemy move, eat and health is porportional to current level 
         enemy_move_speed = current_level_ref / 2;
@@ -62,7 +59,12 @@ public class enemy_spawner : MonoBehaviour
 
         for (int i = 0; i < data_storage.mob_spawn_rate; i++)
         {
-            Rect hitbox = new Rect(i - 5, j - 5, 10, 10);
+            enemy_spawn_location = new Vector3(
+                (Random.Range(0, 2) == 0 ? -1 : 1) * (current_level_ref + Random.Range(2, 7)),
+                (Random.Range(0, 2) == 0 ? -1 : 1) * (current_level_ref + Random.Range(2, 7)),
+                0);
+
+            Rect hitbox = new Rect(enemy_spawn_location.x - 5, enemy_spawn_location.y - 5, 10, 10);
             enemy new_enemy = new enemy(0, enemy_spawn_location, enemy_move_speed, enemy_eat_speed, enemy_health, target_block, 0f, hitbox);
             all_enemy_list.Add(new_enemy);
         }

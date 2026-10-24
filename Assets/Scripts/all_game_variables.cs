@@ -21,7 +21,7 @@ public class all_game_variables: MonoBehaviour
 
     //player inventory
     public float spore_owned = 0;
-    public float player_attack = 1; 
+    public float player_attack = 10; 
 
 
     void Start()
