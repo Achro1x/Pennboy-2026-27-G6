@@ -22,7 +22,11 @@ public class InfectClick : MonoBehaviour
     public List<square> eaten_block_list = new List<square>();
 
     [SerializeField] SFX_player sfx_player_ref; 
+    [SerializeField] GameObject mushroom_ref;
+    [SerializeField] GameObject particle_ref;
+
     private AudioSource sfx_player;
+    private Animation mushroom_animation;
 
     public int current_level;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,6 +38,7 @@ public class InfectClick : MonoBehaviour
         
         square_index = new List<int> { 0 };
         sfx_player = sfx_player_ref.GetComponent<AudioSource>();
+        mushroom_animation = mushroom_ref.GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -55,10 +60,12 @@ public class InfectClick : MonoBehaviour
 
 
     public void Infect_Increase(){
-
+        particle_ref.GetComponent<ParticleSystem>().Play();
         
         List<square> list_of_square_at_current_level = level_gen_script_reference.list_of_square_in_level_index[current_level];
         int num_of_square_at_current_level = list_of_square_at_current_level.Count;
+
+        mushroom_animation.Play("MushroomClick");
 
         //if eaten_block_list is not empty, fill those first
         //pick random square in current_level 
@@ -90,6 +97,9 @@ public class InfectClick : MonoBehaviour
 
                 sfx_player.clip = sfx_player_ref.audio_clips[1];
                 sfx_player.Play();
+
+
+
             }
 
 
