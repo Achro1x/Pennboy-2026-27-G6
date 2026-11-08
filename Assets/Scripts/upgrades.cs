@@ -45,7 +45,7 @@ public class upgrades : MonoBehaviour
 
     }
     int level_price(int current_level){
-        return (int)Mathf.Pow((current_level+0.5f)*20, 2.5f);
+        return (int)Mathf.Pow((current_level+0.5f)*20, 2.5f)-200;
     }
 
     int click_price(int infected_block_per_click){

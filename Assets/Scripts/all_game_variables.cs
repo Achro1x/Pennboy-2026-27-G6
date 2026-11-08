@@ -28,7 +28,7 @@ public class all_game_variables: MonoBehaviour
 
     void Start()
     {
-        map_size = 11;
+        map_size = 35;
         number_of_infected_blocks = 0;
         number_of_uninfected_blocks = map_size*map_size*4;
         spore_per_sec = 5;

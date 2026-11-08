@@ -1,10 +1,5 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-//using System.Numerics;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class level_gen_script : MonoBehaviour

@@ -23,6 +23,9 @@ public class uninfect_block_count : MonoBehaviour
     void Update()
     {
         data.number_of_uninfected_blocks = full_map_size - data.number_of_infected_blocks;
-        uninfectText.text = "Domination Progress: " + (float)data.number_of_infected_blocks / full_map_size*100 + "%"; 
+        float percentage = (float)data.number_of_infected_blocks / full_map_size * 100f;
+
+
+        uninfectText.text = "Domination Progress: " + (float)Mathf.Round(percentage*100f)/100f  + "%"; 
     }
 }
